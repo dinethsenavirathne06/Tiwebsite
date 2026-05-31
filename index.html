@@ -1,114 +1,257 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap');
+  <meta charset="UTF-8">
+  <title>Happy Birthday Thidasi! 💝</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap');
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Nunito', sans-serif; min-height: 100vh; overflow-x: hidden; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  .step { display: none; min-height: 100vh; width: 100%; position: relative; animation: fadeIn 0.7s ease forwards; }
-  .step.active { display: flex; }
+    body { font-family: 'Nunito', sans-serif; min-height: 100vh; overflow-x: hidden; }
 
-  @keyframes fadeIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+    .step { display: none; min-height: 100vh; width: 100%; position: relative; animation: fadeIn 0.7s ease forwards; }
+    .step.active { display: flex; }
 
-  /* STEP 1 */
-  #step1 { background: #1a0a2e; align-items: center; justify-content: center; flex-direction: column; gap: 2rem; }
-  .stars-bg { position: absolute; inset: 0; pointer-events: none; }
-  .star-dot { position: absolute; border-radius: 50%; background: #fff; animation: twinkle ease-in-out infinite; }
-  @keyframes twinkle { 0%,100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 1; transform: scale(1.4); } }
-  .envelope-wrap { position: relative; display: flex; flex-direction: column; align-items: center; gap: 1.8rem; z-index: 2; }
-  .envelope { width: 140px; height: 100px; background: #FF6B9D; border-radius: 8px; position: relative; box-shadow: 0 0 40px rgba(255,107,157,0.5); animation: pulse-env 2s ease-in-out infinite; }
-  @keyframes pulse-env { 0%,100% { box-shadow: 0 0 30px rgba(255,107,157,0.4); transform: translateY(0); } 50% { box-shadow: 0 0 60px rgba(255,107,157,0.7); transform: translateY(-6px); } }
-  .envelope::before { content: ''; position: absolute; top: 0; left: 0; right: 0; border-left: 70px solid transparent; border-right: 70px solid transparent; border-top: 52px solid #e0547f; border-radius: 8px 8px 0 0; }
-  .envelope::after { content: '💌'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-35%); font-size: 2.2rem; }
-  .btn-step1 { font-family: 'Pacifico', cursive; font-size: 1.3rem; color: #1a0a2e; background: linear-gradient(135deg,#FFE66D,#FFB347); border: none; border-radius: 50px; padding: 0.9rem 2.4rem; cursor: pointer; box-shadow: 0 6px 24px rgba(255,179,71,0.5); transition: transform 0.2s ease; z-index: 2; }
-  .btn-step1:hover { transform: scale(1.07); }
-  .hint-text { color: rgba(255,255,255,0.45); font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; z-index: 2; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to   { opacity: 1; transform: scale(1); }
+    }
 
-  /* STEP 2 */
-  #step2 { background: linear-gradient(160deg,#FF6B9D 0%,#FFB347 60%,#FFE66D 100%); align-items: center; justify-content: center; flex-direction: column; padding: 2rem 1rem; }
-  .message-card { background: #fff; border-radius: 24px; max-width: 480px; width: 100%; padding: 2.5rem 2rem; box-shadow: 0 16px 50px rgba(0,0,0,0.15); text-align: center; position: relative; overflow: hidden; }
-  .message-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg,#FF6B9D,#FFB347,#FFE66D,#A8E6CF,#88D8FF); }
-  .msg-emoji { font-size: 3.5rem; display: block; margin-bottom: 1rem; animation: bounce 1.5s ease-in-out infinite; }
-  @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-  .message-card h2 { font-family: 'Pacifico', cursive; font-size: 1.9rem; color: #FF6B9D; margin-bottom: 1.2rem; }
-  .message-card p { font-size: 1rem; color: #555; line-height: 1.9; font-weight: 600; }
-  .message-card .author { margin-top: 1.5rem; font-family: 'Pacifico', cursive; font-size: 1.2rem; color: #FFB347; }
-  .btn-step2 { margin-top: 2rem; font-family: 'Pacifico', cursive; font-size: 1.1rem; color: #fff; background: linear-gradient(135deg,#FF6B9D,#e0547f); border: none; border-radius: 50px; padding: 0.85rem 2.2rem; cursor: pointer; box-shadow: 0 6px 20px rgba(255,107,157,0.5); transition: transform 0.2s ease; width: 100%; }
-  .btn-step2:hover { transform: scale(1.04); }
+    /* ══ STEP 1 (Deep Sky Night) ══ */
+    #step1 {
+      background: url('download.jpeg') no-repeat center center/cover;
+      align-items: center; justify-content: center; flex-direction: column; gap: 2rem; cursor: pointer;
+    }
 
-  /* STEP 3 */
-  #step3 { background: linear-gradient(135deg,#FF6B9D 0%,#FFB347 25%,#FFE66D 50%,#A8E6CF 75%,#88D8FF 100%); flex-direction: column; align-items: center; padding-bottom: 4rem; }
-  .confetti-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-  .cdot { position: absolute; border-radius: 50%; opacity: 0.4; animation: cfloat linear infinite; }
-  @keyframes cfloat { 0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.4; } 90% { opacity: 0.4; } 100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; } }
+    .stars-bg { position: absolute; inset: 0; pointer-events: none; }
 
-  .page { position: relative; z-index: 1; max-width: 700px; width: 100%; padding: 2rem 1rem 4rem; }
+    .star-dot {
+      position: absolute; border-radius: 50%; background: #fff;
+      animation: twinkle ease-in-out infinite;
+    }
 
-  .hero { text-align: center; padding: 3rem 1rem 2rem; }
-  .hero-emoji { font-size: 4rem; display: block; animation: bounce 1.5s ease-in-out infinite; }
-  .hero h1 { font-family: 'Pacifico', cursive; font-size: clamp(1.8rem,5vw,3rem); color: #fff; text-shadow: 3px 3px 0 #FF6B9D, 5px 5px 0 rgba(0,0,0,0.1); margin: 1rem 0 0.5rem; line-height: 1.2; }
-  .hero p { font-size: 1.1rem; color: #fff; font-weight: 600; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
-  .stars { color: #FFE66D; font-size: 1.5rem; letter-spacing: 4px; }
+    @keyframes twinkle {
+      0%,100% { opacity: 0.2; transform: scale(1); }
+      50%      { opacity: 1;   transform: scale(1.4); }
+    }
 
-  .section-title { font-family: 'Pacifico', cursive; font-size: 1.8rem; color: #fff; text-align: center; text-shadow: 2px 2px 0 rgba(0,0,0,0.1); margin: 2.5rem 0 1.2rem; }
+    .envelope-wrap { position: relative; display: flex; flex-direction: column; align-items: center; gap: 1.8rem; z-index: 2; }
 
-  .photo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .envelope {
+      width: 140px; height: 100px; background: #3a86ff; border-radius: 8px; position: relative;
+      box-shadow: 0 0 40px rgba(58, 134, 255, 0.5);
+      animation: pulse-env 2s ease-in-out infinite;
+    }
 
-  .photo-card { border-radius: 16px; overflow: hidden; position: relative; cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275), box-shadow 0.3s ease; aspect-ratio: 1; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border: 3px solid #fff; }
-  .photo-card:nth-child(1) { transform: rotate(-2deg); }
-  .photo-card:nth-child(2) { transform: rotate(1deg); }
-  .photo-card:nth-child(3) { transform: rotate(-1.5deg); }
-  .photo-card:nth-child(4) { transform: rotate(2deg); }
-  .photo-card:nth-child(5) { transform: rotate(-0.5deg); }
-  .photo-card:nth-child(6) { transform: rotate(1.5deg); }
-  .photo-card:hover { transform: rotate(0) scale(1.06) !important; box-shadow: 0 12px 35px rgba(0,0,0,0.25); z-index: 10; }
-  .photo-card img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
-  .photo-card .photo-emoji { font-size: 2.5rem; }
-  .photo-card .photo-label { font-size: 0.75rem; font-weight: 700; color: #888; text-align: center; padding: 0 8px; }
-  .photo-card .photo-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent,rgba(255,107,157,0.9)); color: #fff; font-size: 0.75rem; font-weight: 700; padding: 24px 8px 8px; text-align: center; transform: translateY(100%); transition: transform 0.3s ease; }
-  .photo-card:hover .photo-caption { transform: translateY(0); }
+    @keyframes pulse-env {
+      0%,100% { box-shadow: 0 0 30px rgba(58, 134, 255, 0.4); transform: translateY(0); }
+      50%      { box-shadow: 0 0 60px rgba(58, 134, 255, 0.7); transform: translateY(-6px); }
+    }
 
-  .upload-hint { background: rgba(255,255,255,0.8); border-radius: 14px; padding: 1rem 1.2rem; text-align: center; margin-top: 1rem; font-size: 0.85rem; color: #555; font-weight: 600; border: 2px dashed rgba(255,107,157,0.5); }
+    .envelope::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      border-left: 70px solid transparent; border-right: 70px solid transparent;
+      border-top: 52px solid #2563eb; border-radius: 8px 8px 0 0;
+    }
 
-  .love-card { background: #fff; border-radius: 20px; padding: 2rem; margin-top: 1rem; box-shadow: 0 8px 30px rgba(0,0,0,0.12); text-align: center; position: relative; overflow: hidden; }
-  .love-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg,#FF6B9D,#FFB347,#FFE66D,#A8E6CF,#88D8FF); }
-  .love-card .bday-title { font-family: 'Pacifico', cursive; font-size: 1.5rem; color: #FF6B9D; margin-bottom: 1.2rem; }
-  .love-card p { font-size: 1rem; color: #555; line-height: 1.9; font-weight: 600; }
-  .love-card .signature { margin-top: 1.2rem; font-family: 'Pacifico', cursive; font-size: 1.3rem; color: #FF6B9D; }
+    .envelope::after { content: '💌'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-35%); font-size: 2.2rem; }
 
-  .footer { text-align: center; margin-top: 3rem; padding-top: 2rem; }
-  .footer .big-heart { font-size: 3rem; animation: heartbeat 1.2s ease-in-out infinite; }
-  @keyframes heartbeat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.18); } }
-  .footer p { color: #fff; font-family: 'Pacifico', cursive; font-size: 1.2rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.15); margin-top: 0.5rem; }
-</style>
+    .btn-step1 {
+      font-family: 'Pacifico', cursive; font-size: 1.3rem; color: #0a192f;
+      background: linear-gradient(135deg, #e0f2fe, #7dd3fc); border: none; border-radius: 50px;
+      padding: 0.9rem 2.4rem; cursor: pointer; box-shadow: 0 6px 24px rgba(125, 211, 252, 0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease; z-index: 2;
+    }
+    .btn-step1:hover { transform: scale(1.07); box-shadow: 0 10px 32px rgba(125, 211, 252, 0.7); }
+
+    .hint-text { color: rgba(255,255,255,0.45); font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; z-index: 2; }
+
+    /* ══ STEP 2 (Ocean Blue Gradient) ══ */
+    #step2 {
+      background: linear-gradient(160deg, #1e3a8a 0%, #3b82f6 60%, #93c5fd 100%);
+      align-items: center; justify-content: center; flex-direction: column; padding: 2rem 1rem;
+    }
+
+    .message-card {
+      background: #fff; border-radius: 24px; max-width: 480px; width: 100%;
+      padding: 2.5rem 2rem; box-shadow: 0 16px 50px rgba(0,0,0,0.15); text-align: center;
+      position: relative; overflow: hidden;
+    }
+
+    .message-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+      background: linear-gradient(90deg, #1d4ed8, #3b82f6, #60a5fa, #93c5fd, #e0f2fe);
+    }
+
+    .msg-emoji { font-size: 3.5rem; display: block; margin-bottom: 1rem; animation: bounce 1.5s ease-in-out infinite; }
+
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    .message-card h2 { font-family: 'Pacifico', cursive; font-size: 1.9rem; color: #2563eb; margin-bottom: 1.2rem; }
+    .message-card p { font-size: 1rem; color: #555; line-height: 1.9; font-weight: 600; }
+    .message-card .author { margin-top: 1.5rem; font-family: 'Pacifico', cursive; font-size: 1.2rem; color: #3b82f6; }
+
+    .btn-step2 {
+      margin-top: 2rem; font-family: 'Pacifico', cursive; font-size: 1.1rem; color: #fff;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8); border: none; border-radius: 50px;
+      padding: 0.85rem 2.2rem; cursor: pointer; box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+      transition: transform 0.2s ease; width: 100%;
+    }
+    .btn-step2:hover { transform: scale(1.04); }
+
+    /* ══ STEP 3 (Magical Blue Spectrum) ══ */
+    #step3 {
+      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 25%, #60a5fa 50%, #a5f3fc 75%, #e0f2fe 100%);
+      flex-direction: column; align-items: center; padding-bottom: 4rem;
+    }
+
+    .confetti-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+
+    .cdot { position: absolute; border-radius: 50%; opacity: 0.4; animation: cfloat linear infinite; }
+
+    @keyframes cfloat {
+      0%   { transform: translateY(110vh) rotate(0deg);   opacity: 0; }
+      10%  { opacity: 0.4; }
+      90%  { opacity: 0.4; }
+      100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+    }
+
+    .page { position: relative; z-index: 1; max-width: 700px; width: 100%; padding: 2rem 1rem 4rem; }
+
+    .hero { text-align: center; padding: 3rem 1rem 2rem; }
+    .hero-emoji { font-size: 4rem; display: block; animation: bounce 1.5s ease-in-out infinite; }
+
+    .hero h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(1.8rem,5vw,3rem);
+      color: #fff;
+      text-shadow: 3px 3px 0 #1d4ed8, 5px 5px 0 rgba(0,0,0,0.1);
+      margin: 1rem 0 0.5rem; line-height: 1.2;
+    }
+
+    .stars { color: #fef08a; font-size: 1.5rem; letter-spacing: 4px; }
+
+    .section-title {
+      font-family: 'Pacifico', cursive; font-size: 1.8rem; color: #fff; text-align: center;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.1); margin: 2.5rem 0 1.2rem;
+    }
+
+    .photo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+
+    .photo-card {
+      border-radius: 16px; overflow: hidden; position: relative; cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      transition: transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275), box-shadow 0.3s ease;
+      aspect-ratio: 1; background: #fff;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+      border: 3px solid #fff;
+    }
+    .photo-card:nth-child(1) { transform: rotate(-2deg); }
+    .photo-card:nth-child(2) { transform: rotate(1deg); }
+    .photo-card:nth-child(3) { transform: rotate(-1.5deg); }
+    .photo-card:nth-child(4) { transform: rotate(2deg); }
+    .photo-card:nth-child(5) { transform: rotate(-0.5deg); }
+    .photo-card:nth-child(6) { transform: rotate(1.5deg); }
+    .photo-card:hover { transform: rotate(0) scale(1.06) !important; box-shadow: 0 12px 35px rgba(0,0,0,0.25); z-index: 10; }
+    .photo-card .photo-emoji { font-size: 2.5rem; }
+    .photo-card .photo-label { font-size: 0.75rem; font-weight: 700; color: #64748b; text-align: center; padding: 0 8px; }
+    .photo-card .photo-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(29, 78, 216, 0.85));
+      color: #fff; font-size: 0.7rem; font-weight: 700; padding: 16px 8px 8px; text-align: center;
+      transform: translateY(100%); transition: transform 0.3s ease;
+    }
+    .photo-card:hover .photo-caption { transform: translateY(0); }
+
+    .love-card {
+      background: #fff; border-radius: 20px; padding: 2rem; margin-top: 1rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12); text-align: center; position: relative; overflow: hidden;
+    }
+    .love-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+      background: linear-gradient(90deg, #1d4ed8, #3b82f6, #60a5fa, #93c5fd, #e0f2fe);
+    }
+    .love-card .bday-title {
+      font-family: 'Pacifico', cursive; font-size: 1.5rem; color: #2563eb; margin-bottom: 1.2rem;
+    }
+    .love-card p { font-size: 1rem; color: #555; line-height: 1.9; font-weight: 600; }
+    .love-card .signature { margin-top: 1.2rem; font-family: 'Pacifico', cursive; font-size: 1.3rem; color: #2563eb; }
+
+    /* ══ FOOTER & INTERACTIVE CAKE ══ */
+    .footer { text-align: center; margin-top: 3rem; padding-top: 2rem; position: relative; }
+
+    .footer .big-heart {
+      font-size: 3.5rem;
+      animation: heartbeat 1.2s ease-in-out infinite;
+      cursor: pointer;
+      display: inline-block;
+      user-select: none;
+      transition: transform 0.1s ease;
+    }
+    .footer .big-heart:active { transform: scale(0.9); }
+
+    @keyframes heartbeat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+    .footer p { color: #fff; font-family: 'Pacifico', cursive; font-size: 1.2rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.15); margin-top: 0.5rem; }
+
+    /* ══ FIRECRACKER BURST ANIMATION ══ */
+    .burst-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      user-select: none;
+      animation: particleMove 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    @keyframes particleMove {
+      0% {
+        transform: translate(-50%, -50%) translate(0, 0) scale(1) rotate(0deg);
+        opacity: 1;
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -50%) translate(var(--x), var(--y)) scale(0.6) rotate(var(--r));
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- STEP 1 -->
+<audio id="bdayMusic" loop>
+  <source src="happybirthdaysong.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ══ STEP 1 ══ -->
 <div class="step active" id="step1">
   <div class="stars-bg" id="starsBg"></div>
   <div class="envelope-wrap">
     <div class="envelope"></div>
-    <button class="btn-step1" onclick="goStep2()">For you, my love 💌</button>
+    <button class="btn-step1" onclick="goStep2()">For you, Kukuwoo 💌</button>
     <p class="hint-text">tap to open ✨</p>
   </div>
 </div>
 
-<!-- STEP 2 -->
+<!-- ══ STEP 2 ══ -->
 <div class="step" id="step2">
   <div class="message-card">
     <span class="msg-emoji">💌</span>
-    <h2>Hey, my love...</h2>
-    <p>I made something special just for you — because you deserve a little surprise today. 🌸<br><br>Before you see it, just know: every single day with you is my favourite day. You make me smile without even trying, and I fall for you a little more every time I look at you. 💕<br><br>Now... are you ready for your surprise?</p>
-    <div class="author">— Yours always 🌹</div>
-    <button class="btn-step2" onclick="goStep3()">Yes, show me! 🎉</button>
+    <h2>Hey, Thidasi...</h2>
+    <p>
+      Today is your special day . 🌸
+      <br><br>
+      This is from me for your special day. 💕
+      <br><br>
+      readyyy?
+    </p>
+    <div class="author">— click the botton 🌹</div>
+    <button class="btn-step2" onclick="goStep3()">Yaeeeeee! 🎉</button>
   </div>
 </div>
 
-<!-- STEP 3 -->
+<!-- ══ STEP 3 ══ -->
 <div class="step" id="step3">
   <div class="confetti-bg" id="confettiBg"></div>
   <div class="page">
@@ -117,48 +260,44 @@
       <span class="hero-emoji">🎂</span>
       <h1>Hapyyyy Birthday Thidasiii</h1>
       <div class="stars">★★★★★</div>
-      <p style="margin-top:0.8rem">This little corner of the internet<br>was made just for you 💝</p>
     </div>
 
-    <h2 class="section-title">📸 Our Memories</h2>
+    <h2 class="section-title">📸 With kukoowa</h2>
     <div class="photo-grid">
-
-      <!-- Card 1 — real photo -->
-      <div class="photo-card" style="background:#FFE0EC;">
-        <img src="download.webp" alt="Our first date" style="object-fit:cover;" />
+      <div class="photo-card" style="background:linear-gradient(135deg,#e0f2fe,#fff)">
+        <div class="photo-emoji">🌅</div>
+        <div class="photo-label">Our first date</div>
         <div class="photo-caption">The day it all began 💕</div>
       </div>
-
-      <div class="photo-card" style="background:linear-gradient(135deg,#FFF0D4,#fff)">
+      <div class="photo-card" style="background:linear-gradient(135deg,#bae6fd,#fff)">
         <div class="photo-emoji">🌊</div>
         <div class="photo-label">Beach trip</div>
         <div class="photo-caption">Salt, sun & you ☀️</div>
       </div>
-      <div class="photo-card" style="background:linear-gradient(135deg,#E0F4FF,#fff)">
+      <div class="photo-card" style="background:linear-gradient(135deg,#7dd3fc,#fff)">
         <div class="photo-emoji">🍕</div>
         <div class="photo-label">Pizza night</div>
         <div class="photo-caption">Extra cheese, extra love 🍕</div>
       </div>
-      <div class="photo-card" style="background:linear-gradient(135deg,#E8FFE8,#fff)">
+      <div class="photo-card" style="background:linear-gradient(135deg,#e0f2fe,#fff)">
         <div class="photo-emoji">🎂</div>
         <div class="photo-label">Your birthday</div>
         <div class="photo-caption">My favourite day 🥳</div>
       </div>
-      <div class="photo-card" style="background:linear-gradient(135deg,#F5E0FF,#fff)">
+      <div class="photo-card" style="background:linear-gradient(135deg,#bae6fd,#fff)">
         <div class="photo-emoji">🎬</div>
         <div class="photo-label">Movie nights</div>
         <div class="photo-caption">Popcorn & cuddles 🍿</div>
       </div>
-      <div class="photo-card" style="background:linear-gradient(135deg,#FFE0E0,#fff)">
+      <div class="photo-card" style="background:linear-gradient(135deg,#7dd3fc,#fff)">
         <div class="photo-emoji">🌸</div>
         <div class="photo-label">Our walks</div>
         <div class="photo-caption">Every step with you 🌸</div>
       </div>
     </div>
 
-    <div class="upload-hint">📷 Send me more photos and I'll add them to the other cards too!</div>
 
-    <h2 class="section-title">💌 Birthday Message</h2>
+    <h2 class="section-title">💌 From me</h2>
     <div class="love-card">
       <div class="bday-title">Happy 22nd Birthday, Thidasiiiii ❤️🎉</div>
       <p>
@@ -168,11 +307,11 @@
         <br><br>
         I love you more than words can express, and I can't wait to create many more wonderful memories with you, princess. You deserve all the happiness in the world. 💕🎂✨
       </p>
-      <div class="signature">Love you suuti kukowoooo ❤️<br>Happy Birthday, sweetheart! ❤️</div>
+      <div class="signature">Love you suuti kukowoooo ❤️<br>Happy Birthday, Moda Gavidya! ❤️</div>
     </div>
 
     <div class="footer">
-      <div class="big-heart">🎂</div>
+      <div class="big-heart" onclick="celebrateCake(event)">🎂</div>
       <p>Made with all my love, just for Thidasiii</p>
     </div>
 
@@ -180,6 +319,7 @@
 </div>
 
 <script>
+  // Step 1 - Background Stars Spawning Logic
   const starsBg = document.getElementById('starsBg');
   for (let i = 0; i < 60; i++) {
     const s = document.createElement('div');
@@ -197,7 +337,16 @@
   function goStep3() {
     document.getElementById('step2').classList.remove('active');
     document.getElementById('step3').classList.add('active');
-    const colors = ['#FF6B9D','#FFB347','#FFE66D','#A8E6CF','#88D8FF','#C9A0DC'];
+
+    // 🎵 INITIATE HAPPY BIRTHDAY MUSIC TRACK HERE
+    const music = document.getElementById('bdayMusic');
+    if (music) {
+      music.volume = 0.40; // Soft 40% sweet audio level balance
+      music.play().catch(err => console.log("Audio waiting for user touch interaction sequence.", err));
+    }
+
+    // Step 3 Floating background confetti bits setup (Blue spectrum variant)
+    const colors = ['#2563eb','#3b82f6','#60a5fa','#93c5fd','#a5f3fc','#06b6d4'];
     const sizes  = [8,10,12,14,16,20];
     const bg = document.getElementById('confettiBg');
     for (let i = 0; i < 40; i++) {
@@ -206,6 +355,48 @@
       const sz = sizes[Math.floor(Math.random()*sizes.length)];
       d.style.cssText = `width:${sz}px;height:${sz}px;background:${colors[Math.floor(Math.random()*colors.length)]};left:${Math.random()*100}%;animation-duration:${6+Math.random()*10}s;animation-delay:${-Math.random()*15}s;`;
       bg.appendChild(d);
+    }
+  }
+
+  /* ══ FIRECRACKER & JUMPING HEARTS ON CLICK LOGIC ══ */
+  function celebrateCake(event) {
+    // Locate center position coordinates of the footer cake
+    const rect = event.target.getBoundingClientRect();
+    const clickX = rect.left + rect.width / 2;
+    const clickY = rect.top + rect.height / 2;
+
+    const particles = ['❤️', '💖', '✨', '🎉', '🌟', '💕', '🎂', '🌸', '💙', '💎'];
+
+    // Generates 35 explosion items per tap
+    for (let i = 0; i < 35; i++) {
+      const p = document.createElement('div');
+      p.classList.add('burst-particle');
+      p.innerText = particles[Math.floor(Math.random() * particles.length)];
+
+      p.style.left = `${clickX}px`;
+      p.style.top = `${clickY}px`;
+
+      // Compute random angles and scatter distances
+      const angle = Math.random() * Math.PI * 2;
+      const distance = 80 + Math.random() * 220;
+
+      const xDestination = Math.cos(angle) * distance;
+      // Subtract an extra 120 pixels to generate an upward firecracker jump arc physics
+      const yDestination = Math.sin(angle) * distance - 120;
+      const rotation = -180 + Math.random() * 360;
+
+      p.style.setProperty('--x', `${xDestination}px`);
+      p.style.setProperty('--y', `${yDestination}px`);
+      p.style.setProperty('--r', `${rotation}deg`);
+
+      p.style.fontSize = `${1.2 + Math.random() * 1.5}rem`;
+
+      document.body.appendChild(p);
+
+      // Clean element out safely from DOM structure once animation completes
+      setTimeout(() => {
+        p.remove();
+      }, 1200);
     }
   }
 </script>
