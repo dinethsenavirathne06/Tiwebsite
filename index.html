@@ -173,7 +173,7 @@
       background: linear-gradient(transparent, rgba(29, 78, 216, 0.85));
       color: #fff; font-size: 0.7rem; font-weight: 700; padding: 16px 8px 8px; text-align: center;
       transform: translateY(100%); transition: transform 0.3s ease;
-      z-index: 2; /* Ensures caption overlays on top of the fixed image */
+      z-index: 2;
     }
     .photo-card:hover .photo-caption { transform: translateY(0); }
 
@@ -207,6 +207,36 @@
     @keyframes heartbeat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.18); } }
     .footer p { color: #fff; font-family: 'Pacifico', cursive; font-size: 1.2rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.15); margin-top: 0.5rem; }
 
+    /* ══ STEP 4 (Surprise Bouquet Room with Background Image) ══ */
+    #step4 {
+      background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(219, 234, 254, 0.75)),
+                  url('https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=1200&auto=format&fit=crop') no-repeat center center/cover;
+      align-items: center; justify-content: center; flex-direction: column; padding: 2rem 1rem;
+    }
+
+    .bouquet-container {
+      position: relative; display: flex; flex-direction: column; align-items: center;
+      max-width: 500px; width: 100%; text-align: center; background: rgba(255, 255, 255, 0.92);
+      padding: 3rem 2rem; border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(29, 78, 216, 0.25);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .bouquet-box {
+      font-size: 7rem; line-height: 1; margin-bottom: 1.5rem;
+      animation: popInUp 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+    }
+
+    @keyframes popInUp {
+      0% { transform: translateY(50px) scale(0.5); opacity: 0; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .step4-title { font-family: 'Pacifico', cursive; font-size: 2.2rem; color: #1d4ed8; margin-bottom: 1rem; }
+    .step4-text { font-size: 1.1rem; color: #475569; line-height: 1.8; font-weight: 600; margin-bottom: 1.5rem; }
+
     /* ══ FIRECRACKER BURST ANIMATION ══ */
     .burst-particle {
       position: fixed;
@@ -237,6 +267,7 @@
   <source src="happybirthdaysong.mp3" type="audio/mpeg">
 </audio>
 
+<!-- STEP 1 -->
 <div class="step active" id="step1">
   <div class="stars-bg" id="starsBg"></div>
   <div class="envelope-wrap">
@@ -246,6 +277,7 @@
   </div>
 </div>
 
+<!-- STEP 2 -->
 <div class="step" id="step2">
   <div class="message-card">
     <span class="msg-emoji">💌</span>
@@ -262,6 +294,7 @@
   </div>
 </div>
 
+<!-- STEP 3 -->
 <div class="step" id="step3">
   <div class="confetti-bg" id="confettiBg"></div>
   <div class="page">
@@ -322,9 +355,23 @@
 
     <div class="footer">
       <div class="big-heart" onclick="celebrateCake(event)">🎂</div>
-      <p>Made with all my love, just for Thidasiii</p>
+      <p>Click the cake for a final surprise!</p>
     </div>
 
+  </div>
+</div>
+
+<!-- STEP 4 -->
+<div class="step" id="step4">
+  <div class="bouquet-container">
+    <div class="bouquet-box">💐</div>
+    <h2 class="step4-title">A Bouquet for My Princess!</h2>
+    <p class="step4-text">
+      Fresh flowers for the most beautiful girl in the universe. 🌸
+      <br>
+      May your year ahead be as colorful and lovely as these blossoms.
+    </p>
+    <div style="font-family: 'Pacifico', cursive; color: #2563eb; font-size: 1.4rem;">Forever Yours. ❤️</div>
   </div>
 </div>
 
@@ -374,7 +421,7 @@
     const clickX = rect.left + rect.width / 2;
     const clickY = rect.top + rect.height / 2;
 
-    const particles = ['❤️', '💖', '✨', '🎉', '🌟', '💕', '🎂', '🌸', '💙', '💎'];
+    const particles = ['❤️', '💖', '✨', '🎉', '🌟', '💕', '💐', '🌸', '🌹', '🌷'];
 
     for (let i = 0; i < 35; i++) {
       const p = document.createElement('div');
@@ -403,6 +450,13 @@
         p.remove();
       }, 1200);
     }
+
+    // Short delay before shifting to Step 4 so she can enjoy the particle boom
+    setTimeout(() => {
+      document.getElementById('step3').classList.remove('active');
+      document.getElementById('step4').classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 800);
   }
 </script>
 </body>
